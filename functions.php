@@ -1,5 +1,6 @@
 <?php
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH'))
+	exit;
 
 // Define constants
 if (!defined('_VERSION')) {
@@ -11,3 +12,7 @@ require get_template_directory() . '/inc/_scripts.php';
 
 // Post types
 require get_template_directory() . '/inc/_post-types.php';
+
+// Register Menu
+
+require get_template_directory() . '/inc/_menus.php';
