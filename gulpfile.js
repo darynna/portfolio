@@ -1,5 +1,9 @@
 "use strict";
 
+const postcss = require('gulp-postcss');
+const tailwindcss = require('tailwindcss');
+const autoprefixerPostcss = require('autoprefixer');
+
 const
     jsWatch = [
         './assets/js/app.js'
@@ -33,6 +37,19 @@ const
     plumber = require('gulp-plumber'),
     concat = require('gulp-concat'),
     merge = require('merge2');
+
+    function tailwindTask() {
+    return src('./assets/css/tailwind.css')   // Your Tailwind input CSS file
+        .pipe(sourcemaps.init())
+        .pipe(postcss([
+            tailwindcss('./tailwind.config.js'),  // Tailwind config
+            autoprefixerPostcss()
+        ]))
+        .pipe(concat('tailwind.min.css'))     // Name output CSS file
+        .pipe(sourcemaps.write('.'))
+        .pipe(dest('./assets/css/dist'));     // Output folder
+}
+
 
 // Sass task: compiles the style.scss file into style.css
 function scssTask() {
@@ -83,5 +100,10 @@ function watchTask() {
 // then runs cacheBust, then watch task
 exports.default = series(
     parallel(scssTask, jsTask),
+    watchTask
+);
+
+exports.default = series(
+    parallel(scssTask, jsTask, tailwindTask),
     watchTask
 );
