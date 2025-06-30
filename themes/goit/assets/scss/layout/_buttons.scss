@@ -1,0 +1,46 @@
+.btn {
+
+    &--primary,
+    &--secondary {
+        padding: 17px 36px;
+        background-color: $primary;
+        color: $white;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        text-decoration: none;
+        border-radius: 8px;
+        background-color: $light;
+        color: $gray;
+
+        &:hover {
+            background-color: $primary;
+            color: $white;
+
+            svg {
+                path {
+                    fill: $white
+                }
+            }
+        }
+    }
+
+    &--primary {
+        padding: 17px 36px;
+        background-color: $primary;
+        color: $white;
+        border-radius: 8px;
+
+        &:hover {
+            background-color: $light;
+            color: $gray;
+
+            svg {
+                path {
+                    stroke: $gray
+                }
+            }
+        }
+    }
+}
